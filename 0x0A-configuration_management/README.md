@@ -1,61 +1,44 @@
-# Configuration management
+# 0x0A. Configuration management
 
-### Resources:
+## Resource
 
-1. [Intro to Configuration Management](https://www.digitalocean.com/community/tutorials/an-introduction-to-configuration-management)
-2. [puppet-lint](http://puppet-lint.com/)
-3. [Puppet emacs mode](https://github.com/voxpupuli/puppet-mode)
-4. [Puppet docs](https://puppet.com/docs/puppet/3.8/index.html)
+- [Intro to Configuration Management](https://www.digitalocean.com/community/tutorials/an-introduction-to-configuration-management)
+- [Puppet resource type: file](https://puppet.com/docs/puppet/5.5/types/file.html) (*Check "Resource types" for all manifest types in the left menu*)
+- [Puppet’s Declarative Language: Modeling Instead of Scripting](https://puppet.com/blog/puppets-declarative-language-modeling-instead-of-scripting/)
+- [Puppet lint](http://puppet-lint.com/)
+- [Puppet emacs mode](https://github.com/voxpupuli/puppet-mode)
+- [Puppet CookBook](https://www.puppetcookbook.com/)
 
-### Installing `puppet-lint`
+## Installing `puppet` and `puppet-lint`
 
+```sh
+# installing puppet and puppet-lint
+wget https://apt.puppet.com/puppet7-release-focal.deb && \
+    dpkg -i puppet7-release-focal.deb && \
+    apt-get update && \
+    apt-get install puppet-agent puppet-lint -y
+
+# confirming installation
+puppet -V
+puppet-lint -v
+
+# If you get an error saying puppet command not found, source the path
+source /etc/profile.d/puppet-agent.sh
 ```
-$ apt-get install -y ruby
-$ gem install puppet-lint -v 2.1.1
-```
 
-### Running a manifest
+## Tasks
 
-```
-puppet apply some_file.pp
-```
+<details>
+<summary><a href="./0-create_a_file.pp">0. Create a file</a></summary><br>
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/NM2k46hX/image.png' border='0' alt='image'/></a>
+</details>
 
-### Using puppet-lint
+<details>
+<summary><a href="./1-install_a_package.pp">1. Install a package</a></summary><br>
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/PqVvKj7c/image.png' border='0' alt='image'/></a>
+</details>
 
-```
-puppet-lint some_file.pp
-
-```
-
-
-
-# Tasks
-
-
-- ### 0-create_a_file.pp
-This Puppet manifest creates a file in `/tmp`.<br>
-
-- Requirements:
-  - File path is `/tmp/holberton`
-  - File permission is `0744`
-  - File owner is `www-data`
-  - File group is `www-data`
-  - File contains `I love Puppet`
-
-- ### 1-install_a_package.pp
-This Puppet manifest installs `puppet-lint`.<br>
-
-- Requirements:
-  - Install `puppet-lint`
-  - Version must be `2.1.1`
-
-- ### 2-execute_a_command.pp
-This Puppet manifest kills a process named `killmenow`.<br>
-- Requirements
-  - Must be the `exec` Puppet resource
-  - Must use `pkill`
-
-<br>
-<br>
-
-<img src="https://puppet.com/images/logos/puppet-logo-black.svg" width="160" height=auto/>
+<details>
+<summary><a href="./2-execute_a_command.pp">2. Execute a command</a></summary><br>
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/CxZFC13P/image.png' border='0' alt='image'/></a>
+</details>
